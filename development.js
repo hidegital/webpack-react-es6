@@ -15,15 +15,23 @@ export default {
     module: {
         loaders: [
             {
-                test: /\.jsx$/,
+                // test: /\.jsx$/,
+                test: /\.js[x]?$/,
                 exclude: /node_modules/,
                 loader: 'babel'
             }
         ]
     },
 
+    devServer: {
+        contentBase: 'dist',
+        port: 3000
+    },
+
+
+    //3つ指定しないと拡張子が省略できない
     resolve: {
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.jsx']
     },
 
     plugins: [

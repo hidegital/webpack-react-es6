@@ -1,0 +1,181 @@
+//$tag
+//	display inline-block
+//	width 87px
+//	height 20px
+//	line-height 18px
+//	text-align center
+//$tag-s
+//	display inline-block
+//	width 78px
+//	height 20px
+//	line-height: 20px
+//	text-align center
+//
+//$tag-xs
+//	display inline-block
+//	width 48px
+//	height 20px
+//	line-height: 20px
+//	text-align center
+$tag-padding-s
+	display inline-block
+	height 18px
+	line-height: 18px
+	text-align center
+	padding 0 4px
+
+//下記使用
+$tag-padding
+	display inline-block
+	height 20px
+	line-height: 19px
+	text-align center
+	padding 0 10px
+	+below(321px)
+		padding 0 5px
+//$tag-l
+//	display inline-block
+//	width 85px
+//	height 19px
+//	line-height 19px
+//	text-align center
+$tag-padding-high
+	display inline-block
+	height 30px
+	line-height: 30px
+	text-align center
+	padding 0 10px
+
++prefix-classes('c-tag--')
+	//.trend
+	//	@extend $tag
+	//	color base
+	//	border 1px solid base
+	//.interview
+	//	@extend $tag
+	//	color tag_
+	//	border 1px solid tag_
+	//.skill
+	//	@extend $tag
+	//	color secondary_
+	//	border 1px solid secondary_
+	//.career
+	//	@extend $tag
+	//	color tag
+	//	border 1px solid tag
+	//.chopsticks
+	//	@extend $tag
+	//	color tag__
+	//	border 1px solid tag__
+
+	//.chopsticks--l
+	//	@extend $tag-l
+	//	color tag__
+	//	border 1px solid tag__
+	//	$tag-padding
+
+	//.secret
+	//	@extend $tag-s
+	//	background-color primary_
+	//	color primary__
+
+	.secret--flow
+		@extend $tag-padding
+		background-color disable
+		color primary__
+	.new--flow
+		@extend $tag-padding
+		background-color base
+		color primary__
+	.celebration
+		@extend $tag-padding
+		background-color primary_
+		color primary__
+	.secret--detail
+		@extend $tag-padding-high
+		background-color primary__
+		color base
+		border 1px solid base
+		border-radius 3px
+	.form--required
+		color primary__
+		background-color base
+		@extend $tag-padding-s
+		border-radius 2px
+	//下記使用
+	.trend--l
+		@extend $tag-padding
+		color contents
+		border 1px solid contents
+	.trend--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color contents
+	.career--l
+		@extend $tag-padding
+		color tag
+		border 1px solid tag
+	.career--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color tag
+	.skill--l
+		@extend $tag-padding
+		color secondary_
+		border 1px solid secondary_
+	.skill--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color secondary_
+	.interview--l
+		@extend $tag-padding
+		color tag_
+		border 1px solid tag_
+	.interview--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color tag_
+	.qa--l
+		@extend $tag-padding
+		color secondary
+		border 1px solid secondary
+	.qa--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color secondary
+	.qa--s--contents
+		@extend $tag-padding
+		width auto
+		height 30px
+		line-height 30px
+		color primary__
+		background-color secondary
+	//下記追加
+	.chopsticks--l
+		@extend $tag-padding
+		color tag__
+		border 1px solid tag__
+	.chopsticks--l--contents
+		@extend $tag-padding
+		color primary__
+		background-color tag__
+	.detail--table
+		@extend $tag-padding-high
+		background-color back
+		color base
+		line-height: 33px
+		border-radius 3px
+
+
+
+
+
+
+
+
+
+
+
+
+
+

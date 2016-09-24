@@ -1,0 +1,74 @@
+.tab__block
+	color text
+	width 100%
+	@extend $sidepadding
+	display flex
+	justify-content space-between
+	align-items center
+
+.tab__block__button
+	width 48%
+	border 1px solid primary
+	border-radius 3px 3px 0 0
+	height 35px
+	line-height: 35px
+	padding-left: 14px
+	text-align left
+	position relative
+	z-index 10
+	top 1px
+	&.is-active
+		border-bottom 2px solid primary__
+		background-color primary__
+.tab__block--top
+	color base
+.tab__block--middle
+	color secondary
+.tab__block--bottom
+	color secondary_
+.tab__block__inner
+	z-index 1
+	position relative
+	border-top 1px solid primary
+	&.is-disable
+		display none
+.tab__block__category
+	text-align left
+	border-bottom 1px solid primary
+	padding 20px 0 10px 15px
+.tab__block__lists
+	display flex
+	flex-wrap wrap
+	> li
+		position relative
+		width 50%
+		height 50px
+		line-height: 50px
+		text-align left
+		border-bottom 1px solid primary
+		border-right 1px solid primary
+		&:nth-of-type(even)
+			border-right none
+		a
+			display block
+			width 100%
+			padding-left 15px
+			position relative
+		.c-icon--triangle
+			position absolute
+			top: 0
+			right: 4px
+			bottom: 0
+			margin: auto
+			height: 4px
+
+
+
+
+
+
+
+
+
+
+

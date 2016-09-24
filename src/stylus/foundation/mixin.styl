@@ -1,0 +1,53 @@
+$hover
+	&:hover
+		opacity .7
+		text-decoration none
+
+$ellipsis
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
+
+$sidepadding
+	padding-left 15px
+	padding-right 15px
+
+lineClamp(height = 100%, line = 2)
+	height height
+	overflow hidden
+	display -webkit-box
+	-webkit-line-clamp line
+	line-clamp line
+	-webkit-box-orient: vertical
+	box-orient: vertical
+	word-wrap: break-word
+	@media all and (-ms-high-contrast:none)
+		display flex
+
+open_face_1px(color)
+	text-shadow:
+		color 0 1px 0,
+		color 1px 0 0,
+		color 0 -1px 0,
+		color -1px 0 0,
+		color -1px -1px 0,
+		color 1px -1px 0,
+		color -1px 1px 0,
+		color 1px 1px 0
+
+open_face_2px(color)
+	text-shadow:
+		color 0 2px 2px,
+		color 0 1px 1px,
+		color 1px 1px 1px,
+		color 1px 0 1px,
+		color 2px 0 1px,
+		color 1px -1px 1px,
+		color 1px -2px 1px,
+		color 0 -2px 1px,
+		color -1px -2px 1px,
+		color -2px -2px 1px,
+		color -2px -1px 1px,
+		color -2px 0 1px,
+		color -2px 1px 1px,
+		color -1px 1px 1px

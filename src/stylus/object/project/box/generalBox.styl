@@ -1,0 +1,156 @@
+.primary-box
+	background-color primary__
+	padding-bottom: 20px
+.primary-box--noPadding
+	background-color primary__
+	padding-top 55px
+	word-break break-all
+	&.primary-box--fixHeight
+		height calc(100vh - 55px)
+.primary-box__inner
+	margin auto
+	width sp-width
+	text-align center
+.primary-box__inner--sidepadding
+	@extend $sidepadding
+._inner--sidepadding--side
+	@extend $sidepadding
+	display flex
+	justify-content space-between
+	align-items center
+.primary-box__logo
+	width 206px
+	margin auto
+.primary-box__ttl
+	text-align left
+	color text
+.primary-box__ttl--back
+	@extend .primary-box__ttl
+	background-color back
+	padding-top 20px
+	padding-bottom: 20px
+	@extend $sidepadding
+.primary-box__ttl--side
+	text-align left
+	display block
+	white-space nowrap
+	margin-right: 10px
+	> span
+		display block
+		padding-left: 7px
+	&.trend
+		color contents
+	&.career
+		color tag
+	&.skill
+		color secondary_
+	&.interview
+		color tag_
+	&.qa
+		color secondary
+	&.chopsticks
+		color tag__
+
+.primary-box--side
+	text-align left
+	color text
+	display block
+	max-width 210px
+	+below(376px)
+		max-width 180px
+	+below(321px)
+		max-width 140px
+.primaryImg-box
+	height 226px
+	background-size cover
+	position: relative
+	background-repeat no-repeat
+	background-position center
+	.u-fs--xs--contents
+		position absolute
+.primaryImg-box__link
+	display block
+	width 100%
+	height 100%
+.primaryImg-box__list__inner
+	position: absolute
+	bottom 0
+	background-color rgba(0,0,0,.3)
+	color primary__
+	padding 10px 40px
+	width 100%
+.primaryImg-box__list__text
+	lineClamp();
+//.primary-box--full
+//	background-color back
+
+.primary-box--full__inner
+	background primary__
+	text-align center
+	height calc(100vh - 108px)
+	min-height 400px
+	position relative
+.primary-box--full__content
+	position absolute
+	width auto
+	height 280px
+	top 50px
+	bottom 0
+	left 0
+	right 0
+	margin auto
+	@extend $sidepadding
+	h2
+		font-size: 5rem
+		//この大きさここのみなのでユーティリティには持たない
+		color base
+		font-family Helvetica, "游ゴシック", "Yu Gothic", YuGothic, Hiragino Kaku Gothic ProN, "ヒラギノ角ゴ ProN W3",  Meiryo, "メイリオ"
+	p
+		color text
+	.c-button-square--l
+		margin-left: auto
+		margin-right: auto
+	&.-full__content--high
+		height 400px
+	+below(321px)
+		&.-full__content--high
+			height 350px
+			.u-fs--mh
+				font-size: 1.2rem
+
+.primary-box__topBlock
+	background back
+	padding-top 20px
+	padding-bottom: 20px
+	@extend $sidepadding
+
+.top__image
+	padding-top 85px
+
+.secondary-box
+	padding-top 55px
+	padding-bottom: 20px
+	background-color back
+	@extend $sidepadding
+
+.secondary-box__topBlock
+	display flex
+	justify-content space-between
+	align-items flex-end
+.secondary-box__ttl
+	color text
+.secondary__ttl--side
+	text-align left
+	color text
+	display inline-block
+.secondary__side
+	display inline-block
+	color text
+
+.secondary-box__sub__text
+	color text
+	.c-icon--people
+		margin-right 3px
+
+
+

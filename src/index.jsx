@@ -183,8 +183,6 @@ class MyApp extends React.Component {
 
 
 
-
-
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={App}>

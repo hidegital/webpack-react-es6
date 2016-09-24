@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "debug": "webpack --devtool source-map src/index.jsx dist/bundle.js "
   },
   "author": "",
   "license": "ISC",
@@ -32,3 +33,4 @@
     "webpack-dev-server": "^1.15.1"
   }
 }
+

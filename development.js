@@ -28,8 +28,11 @@ export default {
             },
             {
                 test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('style-loader','css-loader?sourceMap!postcss-loader!stylus-loader')
+                //style-loaderはHTMLのheaderに追加する役割
+                loader: ExtractTextPlugin.extract('style-loader!css-loader?sourceMap!postcss-loader!stylus-loader')
+                // loader: 'style-loader!css-loader?sourceMap!postcss-loader!stylus-loader'
             }
+
             // { test: /\.css$/,loader: 'style-loader','css-loader!postcss-loader'}
         ]
     },

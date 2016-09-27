@@ -7,7 +7,7 @@ import Marked from 'marked';
 // require('style!css!stylus!../stylus/app.css');
 // import './stylus/app.css'
 // import './stylus/app.css'
-import './stylus/app.styl'
+import '../stylus/app.styl'
 
 import Header from './components/header';
 
@@ -37,6 +37,9 @@ class Comment extends React.Component {
             </div>
         );
     }
+
+
+
 
 
 
@@ -169,6 +172,7 @@ class NotFound extends React.Component {
 
 
 
+
 /*まとめるだけのclass*/
 class MyApp extends React.Component {
     render() {
@@ -194,6 +198,9 @@ ReactDOM.render(
     document.getElementById('app')
     // document.body
 );
+
+
+
 
 
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "start": "webpack-dev-server",
     "debug": "webpack --devtool source-map src/index.jsx dist/bundle.js "
   },
@@ -19,7 +19,9 @@
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "image-webpack-loader": "^2.0.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
     "react": "^15.3.1",
@@ -29,8 +31,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "superagent": "^2.2.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"
   }
 }
-

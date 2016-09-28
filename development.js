@@ -26,6 +26,7 @@ export default {
         path: dist,
         filename: 'js/bundle.js',
         // publicPath は webpack-dev-server で自動コンパイルするために必要（URLにおけるJSファイルへのパスを書く）
+        // publicPath: 'http://localhost:3000/'
         publicPath: '/'
     },
 
@@ -41,14 +42,18 @@ export default {
                 //style-loaderはHTMLのheaderに追加する役割
                 // loader: ExtractTextPlugin.extract('style-loader','css-loader?sourceMap!postcss-loader!stylus-loader')
                 //ExtractTextPluginを使ってcssを1つにする。FOUCによるチラツキを防ぐ
-                loader: ExtractTextPlugin.extract('style-loader','css-loader?sourceMap!postcss-loader!stylus-loader')
+                //resolve-url-loaderを使うことによりimport先のpathも
+                loader: ExtractTextPlugin.extract('style-loader','css-loader?sourceMap!postcss-loader!resolve-url!stylus-loader')
+                // loader: ExtractTextPlugin.extract('style-loader','css-loader?sourceMap!postcss-loader!stylus-loader')
                 //?sourceMap sourceMap用 devtoolと一緒に使わないと効かない
             },
+
 
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 // url-loaderを使用するとdatauriに画像を変換 重さによって切り替える
                 // jpegとかどうなる？？
+                // loader: 'url-loader?limit=10000&name=img/[name].[ext]'
                 loader: 'url-loader'
                 // file-loaderは画像のまま扱う
                 // loader: 'file?name=img/[name].[ext]'
@@ -81,7 +86,10 @@ export default {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx', 'stylus']
+        extensions: ['', '.js', '.jsx', 'stylus'],
+        alias: {
+            images: path.join(__dirname, 'dist/img')
+        }
     },
 
     plugins: [

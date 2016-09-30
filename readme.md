@@ -25,8 +25,13 @@ npm scriptから叩く
 file-loader,url-loaderのオプションで実画像として扱えるが
 その場合loader自体必要無さそう
 
+###ajax
+定番らしいのでsuperagentを使用
+https://github.com/visionmedia/superagent
 
-###jsx
+
+###js
+####jsx
 index.jsxでは
 各pageのwrap用のcomponents + routing
 各ページで使用するcomponentsは全て分ける
@@ -38,7 +43,13 @@ index.jsxでは
         footer.jsx
         - pagename
             - hogehoge.jsx
+####plugin
+modal react-modal
+routing react-router
 
 ###メタタグ
 react-document-metaを使用して
 各pageのwrap用のcomponentsに記述
+
+###プレビュー
+実機でのプレビューがwebpack

@@ -8,6 +8,7 @@ import TestImg from '../../img/rating.png'
 export default class Header extends React.Component {
     render() {
         return <div>
+            <h1>{this.props.title}</h1>
             <ul className={style.header}>
             {/*<ul>*/}
                 <li><img src={TestImg} alt="test" className="img-responsive"/></li>

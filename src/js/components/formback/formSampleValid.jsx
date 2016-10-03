@@ -100,6 +100,7 @@ export const FormPref = React.createClass({
     }
 });
 
+
 // メッセージ
 export const FormMessage = React.createClass({
     // porpsの型を定義する

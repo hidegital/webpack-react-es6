@@ -9,7 +9,6 @@ import ImageUpload from './components/fileUpload'
 import FileUploadModal from './components/fileUploadModal'
 
 
-// import FormApp from './components/formSampleBack';
 import { IndexRoute,Router,Route,Link,browserHistory,hashHistory } from 'react-router'
 // import {DefaultRoute, Router,Route,Link,RouteHandler,hashHistory } from 'react-router'
 
@@ -44,7 +43,7 @@ const FormApp = React.createClass({
             case "name":
                 if(val){
                     flg_name = true;
-                    // blurの時にバリデーションを通った場合ツールチップを非表示にさせる
+                    // blurの時にバリデーションを通った場合非表示にさせる
                     if(event.type === 'blur') {
                         this.setState({
                             errorCheck_name: ''
@@ -52,7 +51,7 @@ const FormApp = React.createClass({
                     }
                 } else {
                     flg_name = false;
-                    // blurの時にバリデーションを通らなかった場合ツールチップを表示させる
+                    // blurの時にバリデーションを通らなかった場合表示させる
                     if(event.type === 'blur') {
                         this.setState({
                             errorCheck_name: 'error_check'
@@ -64,7 +63,7 @@ const FormApp = React.createClass({
             case "pref":
                 if(!val.match("都道府県")){
                     flg_pref = true;
-                    // blurの時にバリデーションを通った場合ツールチップを非表示にさせる
+                    // blurの時にバリデーションを通った場合非表示にさせる
                     if(event.type === 'blur') {
                         this.setState({
                             errorCheck_pref: ''
@@ -72,7 +71,7 @@ const FormApp = React.createClass({
                     }
                 } else {
                     flg_pref = false;
-                    // blurの時にバリデーションを通らなかった場合ツールチップを表示させる
+                    // blurの時にバリデーションを通らなかった場合表示させる
                     if(event.type === 'blur') {
                         this.setState({
                             errorCheck_pref: 'error_check'
@@ -132,6 +131,7 @@ const FormApp = React.createClass({
                     <FormInputRequired requiredValue={this.Validation} title={'お名前'} type={'text'} name={'name'} ph={'例：サンプル太郎'} error={'名前を入力してください'} erch={this.state.errorCheck_name} />
                     <FormPref requiredValue={this.Validation} error={'都道府県を選択してください'} erch={this.state.errorCheck_pref} />
                     <FormInputRequired requiredValue={this.Validation} title={'メールアドレス'} type={'email'} name={'mail'} ph={'例：sample@sample.com'} error={'正しいメールアドレスを入力してください'} erch={this.state.errorCheck_mail} />
+                    <FileUploadModal />
                 </table>
                 <FormSend value={this.state.sendVal} disabled={this.state.disabled} />
             </div>
@@ -267,8 +267,8 @@ class Page extends React.Component {
 class Form extends React.Component {
     render() {
         const meta = {
-            title: 'Some Meta Title',
-            description: 'I am a description, and I can create multiple tags',
+            title: 'Form',
+            description: 'Formの説明',
             canonical: 'http://example.com/path/to/page',
             meta: {
                 charset: 'utf-8',
@@ -283,7 +283,6 @@ class Form extends React.Component {
                 {/*<Header />*/}
                 <h1>formが出たぞ！</h1>
                 <FormApp />
-                <FileUploadModal />
             </div>
         );
     }

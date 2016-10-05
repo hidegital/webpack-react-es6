@@ -3,70 +3,7 @@ import Modal from 'react-modal';
 import ImageUpload from './fileUpload'
 
 export default class FileUploadModal extends React.Component {
-    // constructor () {
-    //     super();
-    //     this.openModal = this.openModal.bind(this);
-    //     this.closeModal = this.closeModal.bind(this);
-    // }
-    // openModal () { this.setState({open: true}); }
-    //
-    // closeModal () { this.setState({open: false}); }
-    //
-    // render () {
-    //     return (
-    //         <div>
-    //             <button onClick={this.openModal}>Open Modal</button>
-    //             <Modal
-    //                 className="ModalClass"
-    //                 overlayClassName="OverlayClass"
-    //                 isOpen={this.state.open}
-    //                 onRequestClose={this.closeModal}
-    //             >
-    //                 <h1>Styled Using Classes Modal</h1>
-    //                 <button onClick={this.closeModal}>Close</button>
-    //                 <input />
-    //                 <input />
-    //             </Modal>
-    //         </div>
-    //     );
-    // }
-    // constructor () {
-    //     super();
-    //
-    //     this.state = {
-    //         open: false
-    //     };
-    //
-    //     this.openModal = this.openModal.bind(this);
-    //     this.closeModal = this.closeModal.bind(this);
-    //     console.log(this.state.imagePreviewUrl);
-    //
-    // }
-    //
-    // handleSelectImage(imagePreviewUrl) {
-    //     // TODO: submit to the server and refresh the list
-    //     console.log(imagePreviewUrl);
-    // }
-    //
-    // openModal () { this.setState({open: true}); }
-    //
-    // closeModal () { this.setState({open: false}); }
-    //
-    // render () {
-    //     return (
-    //         <div>
-    //             {/*<button onClick={this.openModal}>Open Modal</button>*/}
-    //             <div onClick={this.openModal}>Open Modal</div>
-    //             <Modal isOpen={this.state.open} onRequestClose={this.closeModal}>
-    //                 <button onClick={this.closeModal}>Close</button>
-    //                 <ImageUpload onSelectImage={this.handleSelectImage}/>
-    //             </Modal>
-    //         </div>
-    //     );
-    // }
-
-
-    constructor () {
+    constructor (props) {
         super();
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -77,8 +14,7 @@ export default class FileUploadModal extends React.Component {
             imageFileData: ''
         };
     }
-
-    openModal () {
+    openModal (props) {
         this.setState({open: true});
     }
 
@@ -93,6 +29,7 @@ export default class FileUploadModal extends React.Component {
             imagePreviewUrl: imagePreviewUrl,
             imageFileData: imageFileData
         });
+        this.props.onFileData(imageFileData);
     }
 
     render () {
@@ -117,7 +54,6 @@ export default class FileUploadModal extends React.Component {
                 >
                     <h1>Styled Using Classes Modal</h1>
                     <button onClick={this.closeModal}>Close</button>
-
                     <div>
                         <ImageUpload data={this.state.imageFileData} url={this.state.imagePreviewUrl} onSelectImage={this.handleSelectImage}/>
                     </div>

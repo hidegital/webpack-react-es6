@@ -20,7 +20,7 @@ export default class ImageUpload extends React.Component {
         this.setState({
             file: '',
             imagePreviewUrl:''
-        },);
+        });
         //サムネイルリセット
         this.props.onSelectImage('');
     }
@@ -54,7 +54,7 @@ export default class ImageUpload extends React.Component {
     }
 
     render() {
-        console.log(this.state.imagePreviewUrl + 'jijijijiji');
+        // console.log(this.state.imagePreviewUrl);
 
         //{}オブジェクト化することに良りdataをいれてるのか？？
         // let {imagePreviewUrl} = this.state;

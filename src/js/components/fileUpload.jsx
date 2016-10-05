@@ -72,11 +72,12 @@ export default class ImageUpload extends React.Component {
         } else {
             $imagePreview = (<span className="previewText">写真を選択して下さい</span>);
         }
+        let nameArrayNum =  `image[${this.props.inputArrayNum}]`;
         return (
             <div className="previewComponent">
                 {/*<form onSubmit={(e)=>this.handleSubmit(e)}>*/}
                     <label htmlFor="fileInput">fileupload</label>
-                    <input id="fileInput" className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
+                    <input id="fileInput" name={nameArrayNum} className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
                     {/*<button className="submitButton" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>*/}
                     <span className={this.state.file == '' ? "deleteButton is-disable" : "deleteButton "} onClick={(e)=>this.handleSubmit(e)}>写真を削除</span>
                 {/*</form>*/}
@@ -87,6 +88,7 @@ export default class ImageUpload extends React.Component {
         )
     }
 }
+
 
 
 

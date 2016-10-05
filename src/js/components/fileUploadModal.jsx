@@ -4,7 +4,7 @@ import ImageUpload from './fileUpload'
 
 export default class FileUploadModal extends React.Component {
     constructor (props) {
-        super();
+        super(props);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.handleSelectImage = this.handleSelectImage.bind(this);
@@ -45,7 +45,7 @@ export default class FileUploadModal extends React.Component {
         // }
         return (
             <div>
-                <div style={selectImgStyle} onClick={this.openModal}>Open Modal</div>
+                <div id={this.props.arrayNum} style={selectImgStyle} onClick={this.openModal}>Open Modal</div>
                 <Modal
                     className="ModalClass"
                     overlayClassName="OverlayClass"
@@ -55,11 +55,13 @@ export default class FileUploadModal extends React.Component {
                     <h1>Styled Using Classes Modal</h1>
                     <button onClick={this.closeModal}>Close</button>
                     <div>
-                        <ImageUpload data={this.state.imageFileData} url={this.state.imagePreviewUrl} onSelectImage={this.handleSelectImage}/>
+                        <ImageUpload data={this.state.imageFileData} url={this.state.imagePreviewUrl} onSelectImage={this.handleSelectImage} inputArrayNum={this.props.arrayNum}/>
                     </div>
                 </Modal>
             </div>
         );
     }
 }
+
+
 

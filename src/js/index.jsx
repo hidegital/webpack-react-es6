@@ -7,6 +7,13 @@ import Test from './components/test';
 // import FormApp from './components/form'
 import ImageUpload from './components/fileUpload'
 import FileUploadModal from './components/fileUploadModal'
+// import {FileUploadModal, FileUploadModal_1} from './components/fileUploadModal'
+
+// class FileUploadModal_1 extends FileUploadModal{
+// 	constructor (props) {
+// 		super(props);
+// 	}
+// }
 
 
 import { IndexRoute,Router,Route,Link,browserHistory,hashHistory } from 'react-router'
@@ -304,13 +311,13 @@ class SendData extends  React.Component {
 	constructor(){
 		super();
 		this.state = {
-			_token: "JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV",
+			token: "JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV",
 			email: "fatty.rabbit.75@gmail.com",
-			carrierText: "キャリア",
-			makerText: "メーカー",
-			modelText: "機種名",
-			colorText: "カラー",
-			storageText: "容量",
+			carrier: "キャリア",
+			maker: "メーカー",
+			model: "機種名",
+			color: "カラー",
+			storage: "容量",
 			status: "1",
 			period: "使用期間",
 			details: "詳細入力"
@@ -319,18 +326,46 @@ class SendData extends  React.Component {
 		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 	_handleFileData(file) {
+		console.log(file);
+		// if(file) {
+		// 	console.log(file);
+		// }
 		this.setState ({
 			file: file
 		});
 	}
 	_handleSubmit() {
-		console.log(this.state.file);
+		console.log();
+		request
+			.post('http://hikaku-jan.com/backend/api/estimate')
+			.field('_token', this.state.token)
+			.field('email', this.state.email)
+			.field('carrier', this.state.carrier)
+			.field('maker', this.state.maker)
+			.field('model', this.state.model)
+			.field('color', this.state.color)
+			.field('storage', this.state.storage)
+			.field('status', this.state.status)
+			.field('period', this.state.period)
+			.field('details', this.state.details)
+			.attach('image[0]',this.state.file)
+			.end((err, res) => {
+				if (err) {
+					throw err;
+				}
+				// this.setState({data: res.body});
+				console.log(res);
+			});
 	}
 	render() {
 		return (
 			<form method="POST" action="http://hikaku-jan.com/backend/api/estimate" accept-charset="UTF-8" id="register-estimate" enctype="multipart/form-data">
 				<input name="_token" type="hidden" defaultValue="JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV" />
-				<FileUploadModal onFileData={this._handleFileData} />
+				<FileUploadModal onFileData={this._handleFileData} arrayNum="0" />
+				<FileUploadModal_1 onFileData={this._handleFileData} arrayNum="1"/>
+				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="2"/>*/}
+				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="3"/>*/}
+				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="4"/>*/}
 				<input name="email" type="email" defaultValue="fatty.rabbit.75@gmail.com" />
 				<input name="carrier" type="text" defaultValue="キャリア" />
 				<input name="maker" type="text" defaultValue="メーカー" />

@@ -326,16 +326,16 @@ class SendData extends  React.Component {
 		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 	_handleFileData(file) {
-		console.log(file);
-		// if(file) {
+		// console.log(file);
+		// if(file.length) {
 		// 	console.log(file);
 		// }
 		this.setState ({
-			file: file
+			files: file
 		});
+		console.log(this.state.files);
 	}
 	_handleSubmit() {
-		console.log();
 		request
 			.post('http://hikaku-jan.com/backend/api/estimate')
 			.field('_token', this.state.token)
@@ -347,25 +347,23 @@ class SendData extends  React.Component {
 			.field('storage', this.state.storage)
 			.field('status', this.state.status)
 			.field('period', this.state.period)
-			.field('details', this.state.details)
-			.attach('image[0]',this.state.file)
-			.end((err, res) => {
-				if (err) {
-					throw err;
-				}
-				// this.setState({data: res.body});
-				console.log(res);
-			});
+			.field('details', this.state.details);
+		// for(){
+		   request.attach('image[' +  idx + ']',this.state.file);
+		// };
+		request.end((err, res) => {
+			if (err) {
+				throw err;
+			}
+			// this.setState({data: res.body});
+			console.log(res);
+		});
 	}
 	render() {
 		return (
 			<form method="POST" action="http://hikaku-jan.com/backend/api/estimate" accept-charset="UTF-8" id="register-estimate" enctype="multipart/form-data">
 				<input name="_token" type="hidden" defaultValue="JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV" />
-				<FileUploadModal onFileData={this._handleFileData} arrayNum="0" />
-				<FileUploadModal_1 onFileData={this._handleFileData} arrayNum="1"/>
-				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="2"/>*/}
-				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="3"/>*/}
-				{/*<FileUploadModal onFileData={this._handleFileData} arrayNum="4"/>*/}
+				<FileUploadModal onFileData={this._handleFileData}/>
 				<input name="email" type="email" defaultValue="fatty.rabbit.75@gmail.com" />
 				<input name="carrier" type="text" defaultValue="キャリア" />
 				<input name="maker" type="text" defaultValue="メーカー" />

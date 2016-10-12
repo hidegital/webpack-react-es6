@@ -33,7 +33,7 @@ export default class ImageUpload extends React.Component {
             file: '',
             imagePreviewUrl:''
         });
-        //サムネイルリセット
+        //サムネイルリセット 実質inputArrayNum渡す必要も無い
         this.props.onSelectImage('','',this.props.inputArrayNum);
     }
 

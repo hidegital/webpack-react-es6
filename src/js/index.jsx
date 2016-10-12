@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import request from "superagent";
+// import request from "superagent";
 
 import Header from './components/header';
 import Test from './components/test';
 // import FormApp from './components/form'
-import ImageUpload from './components/fileUpload'
+// import ImageUpload from './components/fileUpload'
 import FileUploadModal from './components/fileUploadModal'
 // import {FileUploadModal, FileUploadModal_1} from './components/fileUploadModal'
 
@@ -14,6 +14,9 @@ import FileUploadModal from './components/fileUploadModal'
 // 		super(props);
 // 	}
 // }
+
+import request from 'superagent-bluebird-promise'
+import Promise from 'bluebird'
 
 
 import { IndexRoute,Router,Route,Link,browserHistory,hashHistory } from 'react-router'
@@ -307,6 +310,42 @@ class Page extends React.Component {
 	}
 }
 
+var UploadAPIUtil = {
+	upload: function(formData, url, callback) {
+		var promise;
+
+		promise = request
+			.post(url)
+			.send(formData)
+			.promise()
+			.then(function(res) {
+				if (callback) {
+					callback(null, JSON.parse(res.text));
+				}
+			})
+			.catch(function(err) {
+				if (callback) {
+					callback(err);
+				}
+			});
+	},
+};
+
+var UploadFileActionCreator = {
+	upload: function(formData) {
+		var url = 'http://hikaku-jan.com/backend/api/estimate';
+		UploadAPIUtil.upload(formData, url, function(err, res) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log(res);
+			}
+		});
+	},
+};
+
+
+
 class SendData extends  React.Component {
 	constructor(){
 		super();
@@ -320,44 +359,133 @@ class SendData extends  React.Component {
 			storage: "容量",
 			status: "1",
 			period: "使用期間",
-			details: "詳細入力"
+			details: "詳細入力",
+			files: {}
 		};
 		this._handleFileData = this._handleFileData.bind(this);
 		this._handleSubmit = this._handleSubmit.bind(this);
 	}
-	_handleFileData(file) {
-		// console.log(file);
-		// if(file.length) {
-		// 	console.log(file);
-		// }
-		this.setState ({
-			files: file
-		});
+	_handleFileData(file,keyVal,deleteVal) {
+
+		if(deleteVal) {
+			delete this.state.files[keyVal];
+			this.setState({
+				files : this.state.files
+			});
+		}else {
+			this.state.files[keyVal] = file;  //一旦代入後setstateしないとkeyとして入らない
+			this.setState({
+				files: this.state.files
+			});
+		}
 		console.log(this.state.files);
+
+		for(var key in this.state.files){
+			// request.attach('image[' +  filesIndex + ']',this.state.files[key])
+			// console.log(this.state.files);
+			console.log(this.state.files[key]);
+		}
+
+		// this.setState.formData = new FormData();
+		// formData.append('token', "JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV");
+		// formData.append('email', "fatty.rabbit.75@gmail.com");
+		// formData.append('carrier', "キャリア");
+		// formData.append('maker', "メーカー");
+		// formData.append('model', "機種名");
+		// formData.append('color', "カラー");
+		// formData.append('storage', "容量");
+		// formData.append('status', "1");
+		// formData.append('period', "使用期間");
+		// formData.append('details', "詳細入力");
+		// for(var key in file){
+		// 	formData.append('file', file[key]);
+		// }
 	}
 	_handleSubmit() {
-		request
-			.post('http://hikaku-jan.com/backend/api/estimate')
-			.field('_token', this.state.token)
-			.field('email', this.state.email)
-			.field('carrier', this.state.carrier)
-			.field('maker', this.state.maker)
-			.field('model', this.state.model)
-			.field('color', this.state.color)
-			.field('storage', this.state.storage)
-			.field('status', this.state.status)
-			.field('period', this.state.period)
-			.field('details', this.state.details);
-		// for(){
-		   request.attach('image[' +  idx + ']',this.state.file);
-		// };
-		request.end((err, res) => {
-			if (err) {
-				throw err;
-			}
-			// this.setState({data: res.body});
-			console.log(res);
-		});
+		let filesIndex = 0;
+		// this.setState.formData = new FormData();
+		// this.state.formData.append('token', "JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV");
+		// this.state.formData.append('email', "fatty.rabbit.75@gmail.com");
+		// this.state.formData.append('carrier', "キャリア");
+		// this.state.formData.append('maker', "メーカー");
+		// this.state.formData.append('model', "機種名");
+		// this.state.formData.append('color', "カラー");
+		// this.state.formData.append('storage', "容量");
+		// this.state.formData.append('status', "1");
+		// this.state.formData.append('period', "使用期間");
+		// this.state.formData.append('details', "詳細入力");
+		// for(var key in this.state.files){
+		// 	this.state.formData.append('file', this.state.files[key]);
+		// }
+		// this.setState ({
+		// 	formData : this.state.formData
+		// });
+		// UploadFileActionCreator.upload(this.state.formData);
+
+
+
+		var formData = new FormData();
+		formData.append('token', "JiJ7WOIiM5399Ej3Ox9Xz8dpXlV7INlreMFIDFzV");
+		formData.append('email', "fatty.rabbit.75@gmail.com");
+		formData.append('carrier', "キャリア");
+		formData.append('maker', "メーカー");
+		formData.append('model', "機種名");
+		formData.append('color', "カラー");
+		formData.append('storage', "容量");
+		formData.append('status', "1");
+		formData.append('period', "使用期間");
+		formData.append('details', "詳細入力");
+		for(var key in this.state.files){
+			formData.append('image[' +  filesIndex + ']', this.state.files[key]);
+			filesIndex++;
+		}
+		UploadFileActionCreator.upload(formData);
+
+
+
+		// let filesIndex = 0;
+		// request
+		// 	.post('http://hikaku-jan.com/backend/api/estimate')
+		// 	.field('_token', this.state.token)
+		// 	.field('email', this.state.email)
+		// 	.field('carrier', this.state.carrier)
+		// 	.field('maker', this.state.maker)
+		// 	.field('model', this.state.model)
+		// 	.field('color', this.state.color)
+		// 	.field('storage', this.state.storage)
+		// 	.field('status', this.state.status)
+		// 	.field('period', this.state.period)
+		// 	.field('details', this.state.details);
+		{/*for(var key in this.state.files){*/}
+			{/*request*/}
+				{/*.post('http://hikaku-jan.com/backend/api/estimate')*/}
+				{/*.attach('image[' +  filesIndex + ']',this.state.files[key])*/}
+				{/*.end((err, res) => {*/}
+				{/*if (err) {*/}
+					{/*throw err;*/}
+				{/*}*/}
+				{/*console.log(res);*/}
+			{/*});*/}
+			{/*filesIndex++;*/}
+		{/*}*/}
+		{/*request*/}
+			{/*.post('http://hikaku-jan.com/backend/api/estimate')*/}
+			{/*.field('_token', this.state.token)*/}
+			{/*.field('email', this.state.email)*/}
+			{/*.field('carrier', this.state.carrier)*/}
+			{/*.field('maker', this.state.maker)*/}
+			{/*.field('model', this.state.model)*/}
+			{/*.field('color', this.state.color)*/}
+		// 	.field('storage', this.state.storage)
+		// 	.field('status', this.state.status)
+		// 	.field('period', this.state.period)
+		// 	.field('details', this.state.details)
+		// 	.end((err, res) => {
+		// 	if (err) {
+		// 		throw err;
+		// 	}
+		// 	console.log(res);
+		// });
 	}
 	render() {
 		return (
